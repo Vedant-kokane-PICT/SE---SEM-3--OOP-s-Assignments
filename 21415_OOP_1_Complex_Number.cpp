@@ -58,11 +58,7 @@ ostream& operator <<(ostream& out, Complex& z){
 
 int main() {
     system("cls");
-	Complex c1;
-	Complex c2;
-	Complex c3;
-	Complex c4;
-	Complex c5;
+	Complex c1,c2,c3,c4,c5;
 	cout<<"Enter real and imaginary part of Complex number 1 "<<endl;
 	cin>>c1;
 	cout<<"1. Complex Number : "<<c1<<endl;
