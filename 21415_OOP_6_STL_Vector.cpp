@@ -1,67 +1,97 @@
 // 21415 - Vedant Kokane
 
-#include<iostream>
+#include <iostream>
 #include<vector>
 #include<algorithm>
 #include<string.h>
 using namespace std;
 
 class Student{
-    public :
-    int roll;
-    string name;
-    void get_data(){
-        cout<<"enter roll and name"<<endl;
-        cin>>roll>>name;
-    }
-    void display(){
-        cout<<"Roll - "<<roll<<endl;
-        cout<<"Name - "<<name<<endl;
-    }
-    friend bool compare(Student &s1,Student &s2);
+public :
+	char name[50];
+	char dob[50];
+	int roll;
+	int ph_no;
+//
+	void get_data(){
+		cout<<"Enter name - "<<endl;
+		cin>>name;
+		cout<<"Enter roll no - "<<endl;
+		cin>>roll;
+		cout<<"Enter date of birth - "<<endl;
+		cin>>dob;
+		cout<<"Enter phone no - "<<endl;
+		cin>>ph_no;
+	}
+	void print(){
+		cout<<"name - "<<name<<endl;
+		cout<<"roll no - "<<roll<<endl;
+		cout<<"Date of birth - "<<dob<<endl;
+		cout<<"Phone no - "<<ph_no<<endl;
+		cout<<endl;
+	}
 
+    // will be used for sorting
+	friend bool compare(Student &s1,Student &s2);
+
+    // will be used for searching
     bool operator==(const Student& i1) 
     {
     if(roll==i1.roll)
       return 1;
     return 0;
     }
+    
 };
 
 bool compare(Student &s1,Student &s2){
         return s1.roll<s2.roll;
-}
-
-int main(){
-    int n;
-    vector <Student> s1;
-    cout<<"Enter total "<<endl;
-    cin>>n;
-    Student s2;
-    for(int i=0;i<n;i++){
-        s2.get_data();
-        s1.push_back(s2);
-    }
-    cout<<endl<<"Before"<<endl;
-    for(auto x:s1){
-        x.display();
-    }
-     cout<<endl<<"After"<<endl;
-     sort(s1.begin(),s1.end(),compare);
-     for(auto x:s1){
-        x.display();
     }
 
-    vector <Student> :: iterator p;
-    Student s3;
-    cout<<"Enter roll"<<endl;
-    cin>>s3.roll;
-    p = find(s1.begin(),s1.end(),s3);
-    if(p == s1.end()){
-        cout<<"Not found"<<endl;
+
+
+int main() {
+vector <Student> s1;
+    char c = 'y';
+    while(c != 'n'){
+            cout<<"1. Add data"<<endl;
+            cout<<"2. Display data (Unsorted)"<<endl;
+            cout<<"3. Display data (sorted)"<<endl;
+            cout<<"4. Find data in record"<<endl;
+            int choice;
+            cin>>choice;
+            if(choice==1){
+                    Student s;
+                    s.get_data();
+                    s1.push_back(s);
+            }
+            else if(choice==2){
+                    for(auto x:s1){
+                            x.print();
+                    }
+            }
+            else if(choice==3){
+                    sort(s1.begin(),s1.end(),compare);
+                    for(auto x:s1){
+                            x.print();
+                    }
+            }
+            else if(choice==4){
+                    Student s;
+                    sort(s1.begin(),s1.end(),compare);
+                    vector <Student> :: iterator p;
+                    cout<<"Enter roll no to be searched - "<<endl;
+                    cin>>s.roll;
+                    p = find(s1.begin(),s1.end(),s);
+                    if(p == s1.end()){
+                        cout<<"Not found"<<endl;
+                    }
+                    else{
+                        cout<<"In sorted list Found at LOC - "<<p-s1.begin()<<endl;
+                    }
+            }
+            cout<<"Do you want to continue (y/n)"<<endl;
+            cin>>c;
     }
-    else{
-        cout<<"found at - "<<p-s1.begin()<<endl;
-    }
-    return 0;
+	return 0;
 }
