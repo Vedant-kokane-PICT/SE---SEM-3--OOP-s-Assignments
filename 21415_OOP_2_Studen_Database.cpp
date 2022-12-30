@@ -84,7 +84,7 @@ class Details{
 public:
 void print(Student &s){
 		cout<<"Name of student - "<<s.name<<endl;
-		cout<<"Roll no - "<<s.roll_no<<endl;
+		cout<<"Roll no - "<<*s.roll_no<<endl;
 		cout<<"Class - "<<s.std<<endl;
 		cout<<"Division - "<<s.div<<endl;
 		cout<<"Date of Birth - "<<s.dob<<endl;
