@@ -36,11 +36,22 @@ public :
 	Book(){
 		page_count = 0;
 	}
-	void get_data(){
-		Publication :: get_data();
-		cout<<"Please enter the page count - "<<endl;
-		cin>>page_count;
+	
+	void get_data(){ 
+		try{
+		    Publication :: get_data(); 
+		    cout<<"Please enter the page count - "<<endl;
+		     cin>>page_count;
+		     if(page_count <=0){
+		     throw page_count;
+		     }
+		}
+		catch(...){
+		    page_count = 0;
+		    cout<<"Invalid Page Count"<<endl;
+		}
 	}
+	
 	 void display_data(){
 		 Publication :: display_data();
 		 cout<<"Page count is - "<<page_count<<endl;
@@ -59,18 +70,28 @@ public :
 		play_count = 0.00;
 	}
 	void get_data(){
-			Publication :: get_data();
+		try{
+		    Publication :: get_data(); 
 			cout<<"Please enter the play time - "<<endl;
 			cin>>play_count;
+			if(play_count <=0){
+			    throw play_count;
+			}
 		}
-		 void display_data(){
-			 Publication :: display_data();
-			 cout<<"Play time is - "<<play_count<<endl;
-		 }
+		catch(...){
+		    play_count = 0;
+		    cout<<"Invalid Play time"<<endl;
+		}
+	}
+	
+     void display_data(){
+    	 Publication :: display_data();
+    	 cout<<"Play time is - "<<play_count<<endl;
+     }
 
-		 ~Tape(){
-		 		 // Destructor
-		 	 }
+	 ~Tape(){
+	 		 // Destructor
+	 	 }
 };
 
 
