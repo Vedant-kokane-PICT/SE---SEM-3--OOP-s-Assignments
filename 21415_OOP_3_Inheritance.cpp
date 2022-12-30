@@ -1,5 +1,4 @@
 // 21415 - Vedant Kokane
-// Exception handling is not used in this Program
 
 #include <iostream>
 #include<string.h>
