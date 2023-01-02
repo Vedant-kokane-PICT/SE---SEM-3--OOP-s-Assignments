@@ -6,24 +6,26 @@
 using namespace std;
 
 int main(){
-    string name[10];
-    int roll[10];
-    for(int i=0;i<10;i++){
-        cin>>name[i]>>roll[i];
-    }
-    ofstream out("text1.txt");
-    for(int i=0;i<10;i++){
-        out<<name[i]<<" "<<roll[i]<<endl;
+    ofstream out("text.txt");
+    int n;
+    cout<<"Enter total"<<endl;
+    cin>>n;
+    int a[n];
+    string s[n];
+    for(int i=0;i<n;i++){
+        cout<<"Enter name and roll"<<endl;
+        cin>>s[i]>>a[i];
+        out<<"name - "<<s[i]<<" , roll - "<<a[i]<<endl;
     }
     out.close();
-
-    ifstream in("text1.txt");
-    string s1;
-    int n;
+    ifstream in("text.txt");
     while(in){
-       in>>s1>>n;
-       cout<<s1<<" "<<n<<endl;
+        string s1;
+        int r1;
+        getline(in,s1);
+        cout<<s1<<endl;
     }
     in.close();
     return 0;
 }
+
